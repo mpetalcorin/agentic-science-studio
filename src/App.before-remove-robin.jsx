@@ -78,7 +78,7 @@ import {
 
 const agentCards = [
   {
-    name: "aAidea Discovery Agent",
+    name: "Robin Discovery Agent",
     subtitle: "Multi-agent scientific discovery",
     icon: FlaskConical,
     color: "from-emerald-300 via-cyan-300 to-sky-400",
@@ -215,12 +215,12 @@ const projects = [
 ];
 
 const reasoningData = [
-  { name: "Literature", aAidea: 92, CoScientist: 88, ERA: 58, Translational: 76 },
-  { name: "Hypothesis", aAidea: 84, CoScientist: 96, ERA: 61, Translational: 82 },
-  { name: "Coding", aAidea: 66, CoScientist: 70, ERA: 97, Translational: 58 },
-  { name: "Validation", aAidea: 90, CoScientist: 84, ERA: 89, Translational: 93 },
-  { name: "Audit", aAidea: 78, CoScientist: 83, ERA: 88, Translational: 96 },
-  { name: "Translation", aAidea: 72, CoScientist: 77, ERA: 60, Translational: 95 },
+  { name: "Literature", Robin: 92, CoScientist: 88, ERA: 58, Translational: 76 },
+  { name: "Hypothesis", Robin: 84, CoScientist: 96, ERA: 61, Translational: 82 },
+  { name: "Coding", Robin: 66, CoScientist: 70, ERA: 97, Translational: 58 },
+  { name: "Validation", Robin: 90, CoScientist: 84, ERA: 89, Translational: 93 },
+  { name: "Audit", Robin: 78, CoScientist: 83, ERA: 88, Translational: 96 },
+  { name: "Translation", Robin: 72, CoScientist: 77, ERA: 60, Translational: 95 },
 ];
 
 const benchmarkData = [
@@ -278,7 +278,7 @@ const auditItems = [
 ];
 
 const councilMessages = [
-  { role: "aAidea", text: "I found a mechanistic link between disease phenotype, cellular assay readout, and repurposable target class." },
+  { role: "Robin", text: "I found a mechanistic link between disease phenotype, cellular assay readout, and repurposable target class." },
   { role: "Co-Scientist", text: "I propose three competing hypotheses, then rank them by plausibility, novelty, and testability." },
   { role: "ERA", text: "I generated benchmark code, compared baselines, and improved the method through iterative search." },
   { role: "Reviewer", text: "I flagged missing controls, safety assumptions, and unsupported leaps before any translational claim." },
@@ -515,7 +515,7 @@ export default function AgenticScienceStudio() {
       "Rank targets and interventions using biological plausibility, assay readiness, safety, novelty, and translational tractability.",
       "Produce executable analysis code, validation notebooks, figures, model cards, and an auditable research report.",
     ];
-    if (activeAgent === 0) return base.concat("Prioritise candidates for wet-lab validation using aAidea evidence-to-experiment loops.");
+    if (activeAgent === 0) return base.concat("Prioritise candidates for wet-lab validation using Robin-style evidence-to-experiment loops.");
     if (activeAgent === 1) return base.concat("Run a Co-Scientist-style debate among generation, reflection, ranking, and evolution agents.");
     if (activeAgent === 2) return base.concat("Build benchmark-driven empirical software using ERA-style iterative code search and scoring.");
     return base.concat("Run translational review for clinical plausibility, safety assumptions, assay practicality, and decision risk.");
@@ -557,7 +557,7 @@ export default function AgenticScienceStudio() {
             </div>
           </div>
           <div className="flex flex-wrap gap-2">
-            <Badge>aAidea discovery</Badge>
+            <Badge>Robin-inspired discovery</Badge>
             <Badge>Co-Scientist reasoning</Badge>
             <Badge>ERA-style software</Badge>
             <Badge>Clinical audit layer</Badge>
@@ -697,7 +697,7 @@ export default function AgenticScienceStudio() {
                 <RadarChart data={reasoningData}>
                   <PolarGrid stroke="rgba(255,255,255,0.15)" />
                   <PolarAngleAxis dataKey="name" tick={{ fill: "#cbd5e1", fontSize: 12 }} />
-                  <Radar name="aAidea" dataKey="aAidea" stroke="#67e8f9" fill="#67e8f9" fillOpacity={0.22} />
+                  <Radar name="Robin" dataKey="Robin" stroke="#67e8f9" fill="#67e8f9" fillOpacity={0.22} />
                   <Radar name="Co-Scientist" dataKey="CoScientist" stroke="#c084fc" fill="#c084fc" fillOpacity={0.17} />
                   <Radar name="ERA" dataKey="ERA" stroke="#fb7185" fill="#fb7185" fillOpacity={0.15} />
                   <Radar name="Translational" dataKey="Translational" stroke="#34d399" fill="#34d399" fillOpacity={0.12} />
