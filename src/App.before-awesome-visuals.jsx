@@ -40,8 +40,6 @@ import {
   Workflow,
   X,
 } from "lucide-react";
-import AdvancedVisuals from "./AdvancedVisuals";
-
 import {
   Area,
   AreaChart,
@@ -1002,8 +1000,6 @@ export default function AgenticScienceStudio() {
             </div>
           </div>
         </section>
-
-        <AdvancedVisuals />
 
         <section className="mt-10 rounded-3xl border border-white/10 bg-gradient-to-br from-cyan-300/10 via-slate-900/80 to-violet-400/10 p-6">
           <p className="text-sm text-cyan-200">Report composer</p>
