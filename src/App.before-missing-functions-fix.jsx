@@ -322,7 +322,6 @@ function MetricCard({ icon: Icon, label, value, detail }) {
         </div>
         <Activity className="h-4 w-4 text-emerald-300" />
       </div>
-
       <p className="mt-4 text-sm text-slate-400">{label}</p>
       <h3 className="mt-1 text-3xl font-bold text-white">{value}</h3>
       <p className="mt-2 text-sm text-slate-400">{detail}</p>
@@ -452,9 +451,8 @@ function AnimatedMolecule({ isDark = true }) {
   );
 }
 
-function ModuleCard({ module, index, onOpen = () => {} }) {
+function ModuleCard({ module, index, onOpen }) {
   const Icon = module.icon;
-
   return (
     <motion.button
       type="button"
@@ -470,31 +468,15 @@ function ModuleCard({ module, index, onOpen = () => {} }) {
         <div className="rounded-2xl bg-cyan-300/10 p-3">
           <Icon className="h-6 w-6 text-cyan-300" />
         </div>
-
-        <div className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs text-emerald-200">
-          {module.score}% ready
-        </div>
+        <div className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs text-emerald-200">{module.score}% ready</div>
       </div>
-
       <h4 className="mt-4 text-lg font-semibold text-white">{module.title}</h4>
-
-      <p className="mt-3 text-sm leading-6 text-slate-400">
-        {module.description}
-      </p>
-
+      <p className="mt-3 text-sm leading-6 text-slate-400">{module.description}</p>
       <div className="mt-4 h-2 rounded-full bg-slate-800">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${module.score}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="h-2 rounded-full bg-gradient-to-r from-cyan-300 via-emerald-300 to-violet-300"
-        />
+        <motion.div initial={{ width: 0 }} whileInView={{ width: `${module.score}%` }} viewport={{ once: true }} transition={{ duration: 1 }} className="h-2 rounded-full bg-gradient-to-r from-cyan-300 via-emerald-300 to-violet-300" />
       </div>
-
       <div className="mt-4 flex items-center gap-2 text-sm font-semibold text-cyan-200">
-        Open module
-        <ChevronRight className="h-4 w-4 transition group-hover:translate-x-1" />
+        Open module <ChevronRight className="h-4 w-4 transition group-hover:translate-x-1" />
       </div>
     </motion.button>
   );
@@ -537,50 +519,6 @@ export default function AgenticScienceStudio() {
   const [activeAgent, setActiveAgent] = useState(0);
   const [theme, setTheme] = useState("dark");
   const selectedAgent = agentCards[activeAgent];
-  const [activeModule, setActiveModule] = useState(null);
-  const [workflowStarted, setWorkflowStarted] = useState(false);
-  const [reportExported, setReportExported] = useState(false);
-  const modulesRef = useRef(null);
-  const portfolioRef = useRef(null);
-  const reportRef = useRef(null);
-
-  const scrollToRef = (ref) => {
-    ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  const launchWorkflow = () => {
-    setWorkflowStarted(true);
-    scrollToRef(modulesRef);
-  };
-
-  const exportReport = () => {
-    const report = [
-      "aAidea Agentic Science Studio Decision Memo",
-      "",
-      `Selected agent: ${selectedAgent.name}`,
-      "",
-      "Generated workflow:",
-      ...generatedPlan.map((step, index) => `${index + 1}. ${step}`),
-      "",
-      "Portfolio programmes:",
-      ...projects.map((project) => `- ${project.disease}: ${project.candidate}, confidence ${project.confidence}%`),
-      "",
-      "Audit controls:",
-      ...auditItems.map((item) => `- ${item}`),
-    ].join("\n");
-
-    const blob = new Blob([report], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "aAidea-Agentic-Science-Decision-Memo.txt";
-    link.click();
-    URL.revokeObjectURL(url);
-
-    setReportExported(true);
-    scrollToRef(reportRef);
-  };
-
   const isDark = theme === "dark";
 
   const generatedPlan = useMemo(() => {

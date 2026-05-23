@@ -309,7 +309,8 @@ function GlowOrb({ className, delay = 0 }) {
 
 function MetricCard({ icon: Icon, label, value, detail }) {
   return (
-    <motion.div
+    <motion.button
+      type="button"
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45 }}
@@ -322,7 +323,6 @@ function MetricCard({ icon: Icon, label, value, detail }) {
         </div>
         <Activity className="h-4 w-4 text-emerald-300" />
       </div>
-
       <p className="mt-4 text-sm text-slate-400">{label}</p>
       <h3 className="mt-1 text-3xl font-bold text-white">{value}</h3>
       <p className="mt-2 text-sm text-slate-400">{detail}</p>

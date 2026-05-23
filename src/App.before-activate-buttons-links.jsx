@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Brain,
@@ -119,63 +119,54 @@ const advancedModules = [
   {
     title: "Autonomous Literature Intelligence",
     icon: ScanSearch,
-    link: "#literature-intelligence",
     description: "Continuously maps claims, contradictions, datasets, mechanisms, citations, and experimental gaps across PubMed-style evidence streams.",
     score: 94,
   },
   {
     title: "Mechanistic Knowledge Graph",
     icon: NetworkIcon,
-    link: "#knowledge-graph",
     description: "Connects genes, proteins, pathways, phenotypes, drugs, assays, omics signatures, and disease contexts into a navigable reasoning graph.",
     score: 91,
   },
   {
     title: "Hypothesis Tournament Engine",
     icon: GitCompare,
-    link: "#hypothesis-engine",
     description: "Generates competing hypotheses, forces structured critique, then ranks ideas by novelty, plausibility, testability, and translational value.",
     score: 89,
   },
   {
     title: "Wet-Lab Protocol Designer",
     icon: TestTube2,
-    link: "#wetlab-planner",
     description: "Converts mechanistic hypotheses into cell models, controls, dose ranges, endpoint assays, statistical plans, and go/no-go gates.",
     score: 86,
   },
   {
     title: "Empirical Software Factory",
     icon: ServerCog,
-    link: "#software-engine",
     description: "Builds analysis notebooks, benchmark scripts, model cards, method cards, reproducibility bundles, and figure-generation pipelines.",
     score: 92,
   },
   {
     title: "Causal Failure Mode Auditor",
     icon: TriangleAlert,
-    link: "#audit-layer",
     description: "Searches for confounders, missing controls, unsupported claims, leakage risks, artefacts, and over-interpretation before decisions are made.",
     score: 88,
   },
   {
     title: "Drug Repurposing Radar",
     icon: Pill,
-    link: "#drug-radar",
     description: "Ranks approved or investigational compounds by target logic, safety profile, disease relevance, assay evidence, and combination potential.",
     score: 90,
   },
   {
     title: "Multi-Omics Integrator",
     icon: Dna,
-    link: "#omics-landscape",
     description: "Combines transcriptomics, proteomics, metabolomics, CRISPR screens, imaging readouts, and clinical features into decision-ready evidence.",
     score: 87,
   },
   {
     title: "Human Review Cockpit",
     icon: ClipboardCheck,
-    link: "#report-composer",
     description: "Creates auditable approval checkpoints, uncertainty summaries, source provenance, and expert-review memos for responsible agentic science.",
     score: 95,
   },
@@ -322,7 +313,6 @@ function MetricCard({ icon: Icon, label, value, detail }) {
         </div>
         <Activity className="h-4 w-4 text-emerald-300" />
       </div>
-
       <p className="mt-4 text-sm text-slate-400">{label}</p>
       <h3 className="mt-1 text-3xl font-bold text-white">{value}</h3>
       <p className="mt-2 text-sm text-slate-400">{detail}</p>
@@ -452,51 +442,29 @@ function AnimatedMolecule({ isDark = true }) {
   );
 }
 
-function ModuleCard({ module, index, onOpen = () => {} }) {
+function ModuleCard({ module, index }) {
   const Icon = module.icon;
-
   return (
-    <motion.button
-      type="button"
+    <motion.div
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.04 }}
       whileHover={{ y: -6, scale: 1.015 }}
-      onClick={() => onOpen(module)}
-      className="group rounded-3xl border border-white/10 bg-slate-900/70 p-5 text-left shadow-xl shadow-slate-950/20"
+      className="rounded-3xl border border-white/10 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/20"
     >
       <div className="flex items-start justify-between gap-4">
         <div className="rounded-2xl bg-cyan-300/10 p-3">
           <Icon className="h-6 w-6 text-cyan-300" />
         </div>
-
-        <div className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs text-emerald-200">
-          {module.score}% ready
-        </div>
+        <div className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs text-emerald-200">{module.score}% ready</div>
       </div>
-
       <h4 className="mt-4 text-lg font-semibold text-white">{module.title}</h4>
-
-      <p className="mt-3 text-sm leading-6 text-slate-400">
-        {module.description}
-      </p>
-
+      <p className="mt-3 text-sm leading-6 text-slate-400">{module.description}</p>
       <div className="mt-4 h-2 rounded-full bg-slate-800">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${module.score}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="h-2 rounded-full bg-gradient-to-r from-cyan-300 via-emerald-300 to-violet-300"
-        />
+        <motion.div initial={{ width: 0 }} whileInView={{ width: `${module.score}%` }} viewport={{ once: true }} transition={{ duration: 1 }} className="h-2 rounded-full bg-gradient-to-r from-cyan-300 via-emerald-300 to-violet-300" />
       </div>
-
-      <div className="mt-4 flex items-center gap-2 text-sm font-semibold text-cyan-200">
-        Open module
-        <ChevronRight className="h-4 w-4 transition group-hover:translate-x-1" />
-      </div>
-    </motion.button>
+    </motion.div>
   );
 }
 
@@ -537,50 +505,6 @@ export default function AgenticScienceStudio() {
   const [activeAgent, setActiveAgent] = useState(0);
   const [theme, setTheme] = useState("dark");
   const selectedAgent = agentCards[activeAgent];
-  const [activeModule, setActiveModule] = useState(null);
-  const [workflowStarted, setWorkflowStarted] = useState(false);
-  const [reportExported, setReportExported] = useState(false);
-  const modulesRef = useRef(null);
-  const portfolioRef = useRef(null);
-  const reportRef = useRef(null);
-
-  const scrollToRef = (ref) => {
-    ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  const launchWorkflow = () => {
-    setWorkflowStarted(true);
-    scrollToRef(modulesRef);
-  };
-
-  const exportReport = () => {
-    const report = [
-      "aAidea Agentic Science Studio Decision Memo",
-      "",
-      `Selected agent: ${selectedAgent.name}`,
-      "",
-      "Generated workflow:",
-      ...generatedPlan.map((step, index) => `${index + 1}. ${step}`),
-      "",
-      "Portfolio programmes:",
-      ...projects.map((project) => `- ${project.disease}: ${project.candidate}, confidence ${project.confidence}%`),
-      "",
-      "Audit controls:",
-      ...auditItems.map((item) => `- ${item}`),
-    ].join("\n");
-
-    const blob = new Blob([report], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "aAidea-Agentic-Science-Decision-Memo.txt";
-    link.click();
-    URL.revokeObjectURL(url);
-
-    setReportExported(true);
-    scrollToRef(reportRef);
-  };
-
   const isDark = theme === "dark";
 
   const generatedPlan = useMemo(() => {
@@ -633,10 +557,10 @@ export default function AgenticScienceStudio() {
             </div>
           </div>
           <div className="flex flex-wrap gap-2">
-            <button type="button" onClick={() => setActiveAgent(0)}><Badge>aAidea discovery</Badge></button>
-            <button type="button" onClick={() => setActiveAgent(1)}><Badge>Co-Scientist reasoning</Badge></button>
-            <button type="button" onClick={() => setActiveAgent(2)}><Badge>ERA-style software</Badge></button>
-            <button type="button" onClick={() => setActiveAgent(3)}><Badge>Clinical audit layer</Badge></button>
+            <Badge>aAidea discovery</Badge>
+            <Badge>Co-Scientist reasoning</Badge>
+            <Badge>ERA-style software</Badge>
+            <Badge>Clinical audit layer</Badge>
           </div>
         </nav>
 
@@ -652,11 +576,11 @@ export default function AgenticScienceStudio() {
               A high-impact dashboard that combines multi-agent discovery, hypothesis tournaments, drug repurposing, empirical software generation, wet-lab planning, multi-omics integration, and human-governed audit trails.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <motion.button type="button" onClick={launchWorkflow} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }} className="rounded-2xl bg-gradient-to-r from-cyan-300 to-emerald-300 px-5 py-3 font-semibold text-slate-950 shadow-xl shadow-cyan-950/30">
-                {workflowStarted ? "Workflow launched" : "Launch demo workflow"}
+              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }} className="rounded-2xl bg-gradient-to-r from-cyan-300 to-emerald-300 px-5 py-3 font-semibold text-slate-950 shadow-xl shadow-cyan-950/30">
+                Launch demo workflow
               </motion.button>
-              <motion.button type="button" onClick={exportReport} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }} className="rounded-2xl border border-white/15 bg-white/10 px-5 py-3 font-semibold text-white transition hover:bg-white/15">
-                {reportExported ? "Report exported" : "Export research report"}
+              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }} className="rounded-2xl border border-white/15 bg-white/10 px-5 py-3 font-semibold text-white transition hover:bg-white/15">
+                Export research report
               </motion.button>
             </div>
           </motion.div>
@@ -744,27 +668,7 @@ export default function AgenticScienceStudio() {
           </div>
         </section>
 
-        {workflowStarted && (
-          <motion.section
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mt-8 rounded-3xl border border-emerald-300/20 bg-emerald-300/10 p-5"
-          >
-            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-              <div>
-                <p className="text-sm font-semibold text-emerald-200">Demo workflow active</p>
-                <h3 className="mt-1 text-xl font-bold text-white">The selected agent workflow is ready for review.</h3>
-                <p className="mt-2 text-sm text-slate-300">Choose an agent card, open a module, or export the decision memo.</p>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <button type="button" onClick={() => scrollToRef(portfolioRef)} className="rounded-xl bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/15">View portfolio</button>
-                <button type="button" onClick={exportReport} className="rounded-xl bg-emerald-300 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-emerald-200">Export memo</button>
-              </div>
-            </div>
-          </motion.section>
-        )}
-
-        <section ref={modulesRef} id="modules" className="mt-10">
+        <section className="mt-10">
           <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="text-sm text-cyan-200">Advanced platform modules</p>
@@ -774,7 +678,7 @@ export default function AgenticScienceStudio() {
           </div>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {advancedModules.map((module, i) => (
-              <ModuleCard key={module.title} module={module} index={i} onOpen={setActiveModule} />
+              <ModuleCard key={module.title} module={module} index={i} />
             ))}
           </div>
         </section>
@@ -805,7 +709,7 @@ export default function AgenticScienceStudio() {
           <AgentCouncil />
         </section>
 
-        <section ref={portfolioRef} id="portfolio" className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+        <section className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="rounded-3xl border border-white/10 bg-slate-900/70 p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -975,7 +879,7 @@ export default function AgenticScienceStudio() {
           </div>
         </section>
 
-        <section ref={reportRef} id="report-composer" className="mt-10 rounded-3xl border border-white/10 bg-gradient-to-br from-cyan-300/10 via-slate-900/80 to-violet-400/10 p-6">
+        <section className="mt-10 rounded-3xl border border-white/10 bg-gradient-to-br from-cyan-300/10 via-slate-900/80 to-violet-400/10 p-6">
           <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
             <div>
               <p className="text-sm text-cyan-200">Report composer</p>
@@ -1001,53 +905,6 @@ export default function AgenticScienceStudio() {
           </div>
         </section>
       </main>
-      <AnimatePresence>
-        {activeModule && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/75 p-4 backdrop-blur"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setActiveModule(null)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.94, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.94, y: 20 }}
-              onClick={(e) => e.stopPropagation()}
-              className="max-w-2xl rounded-3xl border border-white/10 bg-slate-900 p-6 shadow-2xl"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-sm text-cyan-200">Activated module</p>
-                  <h3 className="mt-1 text-2xl font-bold text-white">{activeModule.title}</h3>
-                </div>
-                <button type="button" onClick={() => setActiveModule(null)} className="rounded-full bg-white/10 px-3 py-1 text-sm text-white hover:bg-white/20">Close</button>
-              </div>
-              <p className="mt-4 leading-7 text-slate-300">{activeModule.description}</p>
-              <div className="mt-5 grid gap-3 md:grid-cols-3">
-                <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                  <p className="text-xs text-slate-400">Readiness</p>
-                  <p className="mt-1 text-2xl font-bold text-emerald-300">{activeModule.score}%</p>
-                </div>
-                <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                  <p className="text-xs text-slate-400">Output</p>
-                  <p className="mt-1 text-sm font-semibold text-white">Decision-ready memo</p>
-                </div>
-                <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                  <p className="text-xs text-slate-400">Review</p>
-                  <p className="mt-1 text-sm font-semibold text-white">Human approval required</p>
-                </div>
-              </div>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <button type="button" onClick={() => { setActiveModule(null); scrollToRef(reportRef); }} className="rounded-2xl bg-gradient-to-r from-cyan-300 to-emerald-300 px-5 py-3 font-semibold text-slate-950">Send to report</button>
-                <button type="button" onClick={exportReport} className="rounded-2xl border border-white/15 bg-white/10 px-5 py-3 font-semibold text-white hover:bg-white/15">Export memo</button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
 </div>
   );
 }
