@@ -10,7 +10,6 @@ import {
   Bot,
   Brain,
   CheckCircle2,
-  Clipboard,
   ChevronRight,
   ClipboardCheck,
   Code2,
@@ -19,7 +18,6 @@ import {
   Dna,
   Download,
   Eye,
-  ExternalLink,
   FileText,
   FlaskConical,
   GitCompare,
@@ -104,132 +102,6 @@ const agentCards = [
     modules: ["Safety triage", "Assay readiness", "Clinical path", "Risk register"],
   },
 ];
-
-
-const aaideaLinks = [
-  {
-    title: "aAidea Main Website",
-    category: "Company website",
-    description: "Main aAidea homepage for AI, scientific software, digital products, and consulting.",
-    href: "https://a-aidea.com",
-  },
-  {
-    title: "GenAI Document Intelligence Studio",
-    category: "Document AI",
-    description: "A browser-based platform for document intelligence, report reasoning, and AI-assisted knowledge extraction.",
-    href: "https://aidea-genai-document-intelligence-s.vercel.app/",
-  },
-  {
-    title: "SeedState Platform",
-    category: "Seed biology and decision support",
-    description: "A digital decision-support platform for seed physiology, viability assessment, and seed-state reasoning.",
-    href: "https://seedstate-platform.vercel.app/",
-  },
-  {
-    title: "Seed Viability Nomograph",
-    category: "Seed conservation tool",
-    description: "Interactive tool for exploring seed viability, storage behaviour, and conservation decision logic.",
-    href: "https://seed-viability-nomograph.vercel.app/",
-  },
-  {
-    title: "ALT Vulnerability Map",
-    category: "Cancer biology and DNA repair",
-    description: "Scientific software concept for exploring vulnerabilities in ALT-positive cancers.",
-    href: "https://alt-vulnmap.vercel.app/",
-  },
-  {
-    title: "Dynamic Protein Systems Explorer",
-    category: "Protein systems biology",
-    description: "Interactive explorer for protein dynamics, cryo-EM state reasoning, and AI-guided molecular interpretation.",
-    href: "https://dynamic-protein-systems-explorer.vercel.app/",
-  },
-  {
-    title: "MitoGatekeeper Systems Studio",
-    category: "Mitochondrial systems biology",
-    description: "A systems-level platform for exploring mitochondrial ATP regulation, redox balance, and bioenergetic control.",
-    href: "https://mitogatekeeper-systems-studio.vercel.app/",
-  },
-  {
-    title: "Neural-Net Forecasting Studio",
-    category: "Forecasting and machine learning",
-    description: "A neural-network forecasting app for time-series analysis, baseline comparison, and decision-ready prediction.",
-    href: "https://neural-net-forecasting-studio.vercel.app/",
-  },
-  {
-    title: "Plato’s Cave Philosophy Studio",
-    category: "Education and philosophy",
-    description: "Interactive learning studio based on Plato’s allegory of the cave.",
-    href: "https://platos-cave-philosophy-studio.vercel.app/",
-  },
-  {
-    title: "Wedding Planner App",
-    category: "Planning and productivity",
-    description: "A multi-module wedding planning app for budgeting, guest management, timelines, and document generation.",
-    href: "https://wedding-planner-app-bice.vercel.app/",
-  },
-];
-
-function AideaLinksSection() {
-  return (
-    <section className="mt-10 rounded-3xl border border-white/10 bg-slate-900/70 p-6 shadow-2xl shadow-slate-950/30">
-      <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="text-sm text-cyan-200">aAidea ecosystem</p>
-          <h3 className="mt-1 text-3xl font-black text-white">Connected apps and digital products</h3>
-          <p className="mt-3 max-w-3xl leading-7 text-slate-300">
-            Explore the wider aAidea product ecosystem, including scientific AI, document intelligence,
-            seed biology, cancer biology, mitochondrial systems, forecasting, education, and productivity tools.
-          </p>
-        </div>
-
-        <a
-          href="https://a-aidea.com"
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-300 to-emerald-300 px-5 py-3 font-semibold text-slate-950 shadow-xl shadow-cyan-950/30"
-        >
-          Visit aAidea
-          <ExternalLink className="h-4 w-4" />
-        </a>
-      </div>
-
-      <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {aaideaLinks.map((app, index) => (
-          <motion.a
-            key={app.title}
-            href={app.href}
-            target="_blank"
-            rel="noreferrer"
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.04 }}
-            whileHover={{ y: -6, scale: 1.015 }}
-            className="group rounded-3xl border border-white/10 bg-white/[0.04] p-5 shadow-xl shadow-slate-950/20 transition hover:border-cyan-300/50 hover:bg-cyan-300/10"
-          >
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200">
-                  {app.category}
-                </p>
-                <h4 className="mt-2 text-lg font-bold text-white">{app.title}</h4>
-              </div>
-              <ExternalLink className="h-5 w-5 shrink-0 text-cyan-300 transition group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </div>
-
-            <p className="mt-3 text-sm leading-6 text-slate-400">{app.description}</p>
-
-            <div className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-cyan-200">
-              Open app
-              <ChevronRight className="h-4 w-4 transition group-hover:translate-x-1" />
-            </div>
-          </motion.a>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 
 const advancedModules = [
   {
@@ -449,43 +321,6 @@ const hypotheses = [
     testability: 76,
     risk: 52,
   },
-];
-
-
-const evidenceCards = [
-  {
-    title: "Disease mechanism evidence",
-    source: "Peer-reviewed literature stream",
-    strength: "High",
-    note: "Links phenotype, target biology, assay readout, and intervention logic."
-  },
-  {
-    title: "Drug repurposing evidence",
-    source: "Approved-drug and target-mechanism knowledge",
-    strength: "Medium-high",
-    note: "Prioritises candidates with plausible safety and tractability."
-  },
-  {
-    title: "Experimental validation evidence",
-    source: "Cell assay and endpoint design logic",
-    strength: "Medium",
-    note: "Requires wet-lab confirmation before biological claims are made."
-  },
-  {
-    title: "Audit and risk evidence",
-    source: "Human-in-the-loop review layer",
-    strength: "High",
-    note: "Flags unsupported claims, missing controls, and confounding risks."
-  },
-];
-
-const graphNodes = [
-  { label: "Disease", detail: "Defines phenotype, clinical context, and biological system." },
-  { label: "Target", detail: "Connects genes, proteins, pathways, and intervention points." },
-  { label: "Drug", detail: "Ranks repurposing candidates by mechanism and safety." },
-  { label: "Assay", detail: "Defines model, controls, endpoints, and dose response." },
-  { label: "Code", detail: "Generates analysis notebooks, model cards, and benchmark scripts." },
-  { label: "Audit", detail: "Records provenance, uncertainty, and human approval." },
 ];
 
 const auditItems = [
@@ -733,14 +568,8 @@ export default function AgenticScienceStudio() {
   const [workflowStep, setWorkflowStep] = useState(0);
   const [activeModule, setActiveModule] = useState(null);
   const [question, setQuestion] = useState("Find drug repurposing strategies for dry AMD");
-  const [projects, setProjects] = useState(() => {
-    const saved = localStorage.getItem("aaidea-projects");
-    return saved ? JSON.parse(saved) : initialProjects;
-  });
+  const [projects, setProjects] = useState(initialProjects);
   const [newProject, setNewProject] = useState({ disease: "", target: "", candidate: "", confidence: 75, status: "New" });
-  const [activeGraphNode, setActiveGraphNode] = useState(graphNodes[0]);
-  const [runHistory, setRunHistory] = useState([]);
-  const [copied, setCopied] = useState(false);
 
   const selectedAgent = agentCards[activeAgent];
   const isDark = theme === "dark";
@@ -748,10 +577,6 @@ export default function AgenticScienceStudio() {
   useEffect(() => {
     localStorage.setItem("aaidea-theme", theme);
   }, [theme]);
-
-  useEffect(() => {
-    localStorage.setItem("aaidea-projects", JSON.stringify(projects));
-  }, [projects]);
 
   useEffect(() => {
     if (!workflowStarted) return;
@@ -792,9 +617,8 @@ export default function AgenticScienceStudio() {
     };
   }, [question]);
 
-
-  const reportText = useMemo(() => {
-    return [
+  const exportReport = () => {
+    const report = [
       "# aAidea Agentic Science Studio Decision Memo",
       "",
       `Scientific question: ${question}`,
@@ -808,57 +632,22 @@ export default function AgenticScienceStudio() {
       "## Workflow plan",
       ...generatedPlan.map((step, i) => `${i + 1}. ${step}`),
       "",
-      "## Evidence cards",
-      ...evidenceCards.map((e) => `- ${e.title}, ${e.source}, strength: ${e.strength}, note: ${e.note}`),
-      "",
       "## Drug repurposing candidates",
       ...repurposingCandidates.map((c) => `- ${c.compound}, target: ${c.target}, evidence: ${c.evidence}, safety: ${c.safety}, priority: ${c.priority}`),
       "",
       "## Projects",
-      ...projects.map((project) => `- ${project.disease}, ${project.target}, ${project.candidate}, confidence ${project.confidence}%, status: ${project.status}`),
+      ...projects.map((p) => `- ${p.disease}, ${p.target}, ${p.candidate}, confidence ${p.confidence}%, status: ${p.status}`),
       "",
       "## Audit checklist",
       ...auditItems.map((item) => `- ${item}`),
-    ].join("\\n");
-  }, [question, selectedAgent.name, simulatedAnswer, generatedPlan, projects]);
+    ].join("\n");
 
-  const copyReport = async () => {
-    await navigator.clipboard.writeText(reportText);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1600);
-  };
-
-  const exportJson = () => {
-    const payload = {
-      app: "aAidea Agentic Science Studio",
-      question,
-      selectedAgent: selectedAgent.name,
-      simulatedAnswer,
-      workflowPlan: generatedPlan,
-      evidenceCards,
-      candidates: repurposingCandidates,
-      projects,
-      auditItems,
-      runHistory,
-      exportedAt: new Date().toISOString(),
-    };
-
-    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json;charset=utf-8" });
+    const blob = new Blob([report], { type: "text/markdown;charset=utf-8" });
     const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "aAidea-Agentic-Science-Report.json";
-    link.click();
-    URL.revokeObjectURL(url);
-  };
-
-  const exportReport = () => {
-    const blob = new Blob([reportText], { type: "text/markdown;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "aAidea-Agentic-Science-Decision-Memo.md";
-    link.click();
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "aAidea-Agentic-Science-Decision-Memo.md";
+    a.click();
     URL.revokeObjectURL(url);
   };
 
@@ -935,14 +724,14 @@ export default function AgenticScienceStudio() {
                   className="min-h-12 flex-1 rounded-2xl border border-white/10 bg-white/10 px-4 text-white outline-none placeholder:text-slate-400"
                   placeholder="Enter a scientific question"
                 />
-                <button type="button" onClick={() => { setWorkflowStarted(true); setRunHistory((prev) => [{ question, agent: selectedAgent.name, time: new Date().toLocaleString() }, ...prev].slice(0, 6)); }} className="rounded-2xl bg-gradient-to-r from-cyan-300 to-emerald-300 px-5 py-3 font-semibold text-slate-950">
+                <button type="button" onClick={() => setWorkflowStarted(true)} className="rounded-2xl bg-gradient-to-r from-cyan-300 to-emerald-300 px-5 py-3 font-semibold text-slate-950">
                   Run workflow
                 </button>
               </div>
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <motion.button type="button" onClick={() => { setWorkflowStarted(true); setRunHistory((prev) => [{ question, agent: selectedAgent.name, time: new Date().toLocaleString() }, ...prev].slice(0, 6)); }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }} className="rounded-2xl bg-gradient-to-r from-cyan-300 to-emerald-300 px-5 py-3 font-semibold text-slate-950 shadow-xl shadow-cyan-950/30">
+              <motion.button type="button" onClick={() => setWorkflowStarted(true)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }} className="rounded-2xl bg-gradient-to-r from-cyan-300 to-emerald-300 px-5 py-3 font-semibold text-slate-950 shadow-xl shadow-cyan-950/30">
                 {workflowStarted ? "Workflow running" : "Launch demo workflow"}
               </motion.button>
               <motion.button type="button" onClick={exportReport} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }} className="rounded-2xl border border-white/15 bg-white/10 px-5 py-3 font-semibold text-white transition hover:bg-white/15">
@@ -1215,114 +1004,6 @@ export default function AgenticScienceStudio() {
         </section>
 
         <AdvancedVisuals />
-
-        
-        <section className="mt-10 grid gap-6 lg:grid-cols-[1fr_1fr]">
-          <div className="rounded-3xl border border-white/10 bg-slate-900/70 p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-cyan-200">Clickable knowledge graph</p>
-                <h3 className="mt-1 text-2xl font-bold text-white">Explore reasoning nodes</h3>
-              </div>
-              <Network className="h-8 w-8 text-cyan-300" />
-            </div>
-
-            <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3">
-              {graphNodes.map((node) => (
-                <button
-                  key={node.label}
-                  type="button"
-                  onClick={() => setActiveGraphNode(node)}
-                  className={`rounded-2xl border p-4 text-left transition hover:-translate-y-1 ${
-                    activeGraphNode.label === node.label
-                      ? "border-emerald-300/60 bg-emerald-300/10"
-                      : "border-white/10 bg-white/[0.04]"
-                  }`}
-                >
-                  <p className="font-semibold text-white">{node.label}</p>
-                  <p className="mt-2 text-xs leading-5 text-slate-400">{node.detail}</p>
-                </button>
-              ))}
-            </div>
-
-            <div className="mt-5 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-4">
-              <p className="text-sm text-cyan-200">Selected node</p>
-              <h4 className="mt-1 text-xl font-bold text-white">{activeGraphNode.label}</h4>
-              <p className="mt-2 text-sm leading-6 text-slate-300">{activeGraphNode.detail}</p>
-            </div>
-          </div>
-
-          <div className="rounded-3xl border border-white/10 bg-slate-900/70 p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-cyan-200">Evidence cards</p>
-                <h3 className="mt-1 text-2xl font-bold text-white">Source-aware reasoning summary</h3>
-              </div>
-              <BookOpen className="h-8 w-8 text-cyan-300" />
-            </div>
-
-            <div className="mt-6 space-y-3">
-              {evidenceCards.map((card) => (
-                <div key={card.title} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                  <div className="flex items-center justify-between gap-3">
-                    <h4 className="font-semibold text-white">{card.title}</h4>
-                    <span className="rounded-full bg-emerald-300/10 px-3 py-1 text-xs text-emerald-300">{card.strength}</span>
-                  </div>
-                  <p className="mt-1 text-xs text-cyan-200">{card.source}</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{card.note}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="mt-10 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="rounded-3xl border border-white/10 bg-slate-900/70 p-6">
-            <p className="text-sm text-cyan-200">Agent run history</p>
-            <h3 className="mt-1 text-2xl font-bold text-white">Recent workflow runs</h3>
-            <div className="mt-6 space-y-3">
-              {runHistory.length === 0 ? (
-                <p className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm text-slate-400">
-                  No run yet. Click Run workflow to record an agentic run.
-                </p>
-              ) : (
-                runHistory.map((run, index) => (
-                  <div key={`${run.time}-${index}`} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                    <p className="font-semibold text-white">{run.agent}</p>
-                    <p className="mt-1 text-sm text-slate-300">{run.question}</p>
-                    <p className="mt-2 text-xs text-cyan-200">{run.time}</p>
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
-
-          <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-cyan-300/10 via-slate-900/80 to-emerald-300/10 p-6">
-            <p className="text-sm text-cyan-200">Export centre</p>
-            <h3 className="mt-1 text-2xl font-bold text-white">Download or copy decision outputs</h3>
-            <p className="mt-3 leading-7 text-slate-300">
-              Export the agentic science memo as Markdown, download a machine-readable JSON report, or copy the current report to clipboard for email, GitHub, or manuscript notes.
-            </p>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              <button type="button" onClick={exportReport} className="rounded-2xl bg-gradient-to-r from-cyan-300 to-emerald-300 px-5 py-3 font-semibold text-slate-950">
-                Download Markdown
-              </button>
-              <button type="button" onClick={exportJson} className="rounded-2xl border border-white/15 bg-white/10 px-5 py-3 font-semibold text-white hover:bg-white/15">
-                Download JSON
-              </button>
-              <button type="button" onClick={copyReport} className="rounded-2xl border border-white/15 bg-white/10 px-5 py-3 font-semibold text-white hover:bg-white/15">
-                {copied ? "Copied" : "Copy report"}
-              </button>
-              <a href="https://a-aidea.com" target="_blank" rel="noreferrer" className="rounded-2xl border border-cyan-300/30 bg-cyan-300/10 px-5 py-3 font-semibold text-cyan-100 hover:bg-cyan-300/20">
-                aAidea website
-              </a>
-            </div>
-          </div>
-        </section>
-
-
-        <AideaLinksSection />
 
         <section className="mt-10 rounded-3xl border border-white/10 bg-gradient-to-br from-cyan-300/10 via-slate-900/80 to-violet-400/10 p-6">
           <p className="text-sm text-cyan-200">Report composer</p>
