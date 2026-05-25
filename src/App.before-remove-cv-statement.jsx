@@ -105,6 +105,7 @@ const agentCards = [
   },
 ];
 
+
 const aaideaLinks = [
   {
     title: "aAidea Main Website",
@@ -228,6 +229,7 @@ function AideaLinksSection() {
     </section>
   );
 }
+
 
 const advancedModules = [
   {
@@ -448,6 +450,7 @@ const hypotheses = [
     risk: 52,
   },
 ];
+
 
 const evidenceCards = [
   {
@@ -788,6 +791,7 @@ export default function AgenticScienceStudio() {
         "Run a controlled in vitro validation with disease-relevant cells, positive and negative controls, dose-response design, and a predefined go/no-go endpoint.",
     };
   }, [question]);
+
 
   const reportText = useMemo(() => {
     return [
@@ -1212,7 +1216,7 @@ export default function AgenticScienceStudio() {
 
         <AdvancedVisuals />
 
-    
+        
         <section className="mt-10 grid gap-6 lg:grid-cols-[1fr_1fr]">
           <div className="rounded-3xl border border-white/10 bg-slate-900/70 p-6">
             <div className="flex items-center justify-between">
@@ -1316,6 +1320,7 @@ export default function AgenticScienceStudio() {
             </div>
           </div>
         </section>
+
 
         <AideaLinksSection />
 
